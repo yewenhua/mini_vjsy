@@ -1,0 +1,86 @@
+page{
+    width: 100%;
+    height: 100%;
+    background: #f7f7f7;
+}
+.s-page{
+    width: 100%;
+    height: calc( 100% - 20rpx);
+    background: white;
+    margin-top: 20rpx;
+    position: relative;
+}
+.gz{
+    width: 100%;
+    padding-top: 100rpx;
+    text-align: center;
+}
+.gz image{
+    height: 280rpx;
+    width: 280rpx;
+}
+.notice{
+    text-align: center;
+    width: 100%;
+    font-size: 36rpx;
+    color: #424242;
+}
+.desc{
+    text-align: center;
+    width: 100%;
+    font-size: 28rpx;
+    color: #777777;
+}
+.desc-two{
+    text-align: center;
+    width: 100%;
+    font-size: 24rpx;
+    color: #777777;
+}
+.operate{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    margin-top:60rpx;
+}
+.operate .left{
+    width: 50%;
+    text-align: right;
+    display:flex;
+    justify-content:flex-end;
+}
+.operate .right{
+    width: 50%;
+}
+.operate .back{
+    width: 256rpx;
+    height: 88rpx;
+    font-size: 32rpx;
+    font-weight: 400;
+    line-height: 88rpx;
+    text-align: center;
+    background: white;
+    border-radius: 200rpx;
+    border: 4rpx solid #31A0FE;
+    color: #379FFF;
+    margin-right: 20rpx;
+}
+.operate .detail{
+    margin-left: 20rpx;
+    width: 256rpx;
+    height: 88rpx;
+    color: #fff;
+    font-size: 32rpx;
+    font-weight: 400;
+    line-height: 88rpx;
+    text-align: center;
+    background-image: linear-gradient(90deg, #7C92FF 0%, #22A3FE 100%);
+    border-radius: 200rpx;
+    border: none;
+}
+.gzgzh{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}

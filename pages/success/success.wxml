@@ -1,0 +1,17 @@
+<view class="s-page">
+    <view class="gz">
+        <image src='https://shop.iccssi.com/images/gzh.jpg' data-src="https://shop.iccssi.com/images/gzh.jpg" bindtap='preview'></image>
+    </view>
+    <view class="notice">订单提交成功</view>
+    <view class="desc">请关注官方公众号，以便及时了解订单状态!</view>
+    <view class="desc-two">保存二维码图片，用微信扫码关注</view>
+    <view class="operate">
+        <view class="left">
+            <view class="back" bindtap='gohome'>返回首页</view>
+        </view>
+        <view class="right">
+            <view class="detail" bindtap='detail'>订单详情</view>
+        </view>
+    </view>
+    <official-account class="gzgzh"></official-account>
+</view>

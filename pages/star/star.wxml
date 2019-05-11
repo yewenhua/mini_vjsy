@@ -1,0 +1,51 @@
+<view class='star-page'>
+    <view class='star-title'>订单评分</view>
+    <view class='star-item'>
+        <view class='o-item bb'>
+            <view class='left'>产品评价</view>
+            <view class='right'>
+            <block wx:for="{{stars}}" class="bb" wx:key="{{index}}">
+                <image class="star-image" style="left: {{item*48}}rpx" src="{{keys[0] > item ? (keys[0]-item == 0.5 ? halfSrc : selectedSrc) : normalSrc}}">
+                <view class="item" style="left:0rpx;" data-key="{{item+1}}" data-idx="0" bindtap="selectRight"></view>
+                </image>
+            </block>
+            </view>
+        </view>
+        <view class='o-item bb'>
+            <view class='left'>安装响应</view>
+            <view class='right'>
+            <block wx:for="{{stars}}" class="bb" wx:key="{{index}}">
+                <image class="star-image" style="left: {{item*48}}rpx" src="{{keys[1] > item ? (keys[1]-item == 0.5 ? halfSrc : selectedSrc) : normalSrc}}">
+                <view class="item" style="left:0rpx;" data-key="{{item+1}}" data-idx="1" bindtap="selectRight"></view>
+                </image>
+            </block>
+            </view>
+        </view>
+        <view class='o-item'>
+            <view class='left'>服务态度</view>
+            <view class='right'>
+            <block wx:for="{{stars}}" class="bb" wx:key="{{index}}">
+                <image class="star-image" style="left: {{item*48}}rpx" src="{{keys[2] > item ? (keys[2]-item == 0.5 ? halfSrc : selectedSrc) : normalSrc}}">
+                <view class="item" style="left:0rpx;" data-key="{{item+1}}" data-idx="2" bindtap="selectRight"></view>
+                </image>
+            </block>
+            </view>
+        </view>
+    </view>
+    <view class='star-title'>订单评价</view>
+    <view class='o-content'>
+        <textarea class='o-text' value="{{content}}" bindinput="contentblur" placeholder="请输入评价内容" />
+        <view class='up-img' bindtap='select_pic'>
+            <view class="up-img-item {{upimgs.length > 0 ? 'more' : ''}}" wx:for="{{upimgs}}" wx:key="{{index}}" wx:if="{{upimgs.length > 0}}">
+               <image src="{{item.original}}"></image>
+            </view>
+            <view class='up-img-item' wx:if="{{upimgs.length == 0}}">
+               <image src='/static/images/pz.png'></image>
+            </view>
+        </view>
+    </view>
+
+    <view class='o-btn'>
+        <button class="o-submit" bindtap="comment" hover-class="sb-hover">提交评价</button>
+    </view>
+</view>

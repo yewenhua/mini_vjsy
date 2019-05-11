@@ -1,0 +1,66 @@
+<view class="page">
+    <scroll-view class="page__bd" scroll-y>
+        <view class="goods-info">
+            <view class="thumb">
+                <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}">
+                    <block wx:for="{{mainpic}}" wx:key="{{index}}">
+                        <swiper-item>
+                            <image lazy-load="true" src="{{item ? item.url : '/static/images/default@2x.png'}}" mode="aspectFit" lazy-load="true" class="slide-image"/>
+                        </swiper-item>
+                    </block>
+                </swiper>
+            </view>
+            <view class="info">
+                <view class='item'>
+                    <text>保障：</text>官方正品保证
+                </view>
+                <view class='item'>
+                    <text>售后：</text>三年免费维修，终身质保
+                </view>
+                <view class='item'>
+                    <text>型号：</text>{{goodstype}}
+                </view>
+                <view class="item {{colors.length > 1 ? 'select' : ''}}" bindtap="select">
+                    <text>颜色：</text>{{goodssku}}
+                </view>
+                <view class='item'>
+                    <text>价格：</text>¥{{goodsprice}}元
+                </view>
+            </view>
+        </view>
+        <view class="details">
+            <view class='title'>
+               <view class="about">详细介绍</view>
+            </view>
+            
+            <view class='desc'>
+                <block wx:for="{{detailpic}}" wx:key="{{index}}">
+                    <image lazy-load="true" src="{{item && item.url ? item.url : '/static/images/default@2x.png'}}" mode="widthFix" lazy-load="true" class="detail-image"/>
+                </block>
+            </view>
+        </view>
+        <view class="sub-order" bindtap="gonext" hover-class="sb-hover">
+            <view class="btn">提交订单</view>
+        </view>
+        <view class="open-device" style="bottom: {{popup ? '0px' : '-1000rpx'}};">
+            <view class="size">
+                <view class="title">请选择您需要的颜色</view>
+                <view class="detail">
+                    <view class="item {{item.selected ? 'active' : ''}}" wx:for="{{colors}}" wx:key="{{index}}" data-index="{{index}}" bindtap='chgcolor'>{{item.name}}</view>
+                </view>
+            </view>
+            <view class="count" wx:if="{{1==2}}">
+                <view class="title">数量：</view>
+                <view class="num">
+                    <view class="disnum" data-alpha-beta="0" bindtap="changeNum">-</view>
+                    <view class="nownum" data-index="{{index}}">{{count}}</view>
+                    <view class="addnum" data-alpha-beta="1" bindtap="changeNum">+</view>
+                </view>
+            </view>
+            <view class="operate" bindtap="subOrder" hover-class="sb-hover">
+                <view class="btn">确定</view>
+            </view>
+        </view>
+        <view class="mask" catchtap="popup" wx:if="{{popup}}"></view>
+    </scroll-view>
+</view>

@@ -1,0 +1,7 @@
+{
+    "navigationBarTitleText": "艾家甄选",
+    "navigationBarBackgroundColor": "#22A3FE",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": true,
+    "backgroundTextStyle": "dark"
+}

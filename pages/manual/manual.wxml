@@ -1,0 +1,16 @@
+<view class="m-page">
+  <view class='bold-title'>购买须知</view>
+  <view class='subtitle'>购买前请确认好相关参数提供给我们安装人员，以便快速为您上门服务</view>
+  <view class='bold-title'>测量导向片方向</view>
+  <view class='m-img'>
+     <image mode="widthFix" src="https://shop.iccssi.com/images/dxb.jpg"></image>
+  </view>
+  <view class='bold-title'>上传导向片图片</view>
+  <view class='subtitle'>如无法准确提供以上信息，请直接拍一张导向片图片即可</view>
+  <view class='m-img' bindtap='select_pic'>
+     <image mode="widthFix" src="{{file ? file : defaultfile}}"></image>
+  </view>
+  <view class="details">
+      <button class="btn" bindtap="sub_dxb" hover-class="sb-hover">确定</button>
+  </view>
+</view>

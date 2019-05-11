@@ -1,0 +1,156 @@
+<scroll-view class='o-page' scroll-y="true">
+     <view class='o-detail'>
+        <view class='inner'>
+            <view class='o-title'>
+                <view class='img'>
+                <image bindtap='preview' data-cate="main" src="{{detail ? detail.img : '/static/images/default@2x.png'}}"></image>
+                </view>
+                <view class='title'>{{detail ? detail.goodsName : ''}}</view>
+                <view class='desc' wx:if="{{detail.orderStatus == 'CREATED' || detail.orderStatus == 'ACCEPTED'}}">商家即将为您服务，请保持电话畅通</view>
+                <view class='desc' wx:if="{{detail.orderStatus == 'FIXED' || detail.orderStatus == 'FINISHED' || detail.orderStatus == 'REJECTING' || detail.orderStatus == 'CLOSED'}}">订单已完成，售后电话：<text bindtap='call'>400-113-1188</text></view>
+            </view>
+            <view class='o-progress' wx:if="{{detail}}">
+                <view class='view-item' wx:for="{{detail.orderScheduleViews}}" wx:key="{{index}}">
+                    <view class='p-item'>
+                        <image src="{{'/static/images/' + item.status + (item.lighted ? '_ACTIVE' : '') + '.png'}}"></image>
+                        <view class="p-text {{item.lighted ? 'active' : ''}}">{{item.name}}</view>
+                    </view>
+                    <view class='p-line' wx:if="{{index < detail.orderScheduleViews.length-1}}"></view>
+                </view>
+                
+                <view class='sub-title'>订单信息</view>
+            </view>
+
+            <view class='o-item mt-color'>
+                <view class='left'>颜色</view>
+                <view class='right'>{{detail ? detail.goodsSpec : ''}}</view>
+            </view>
+            <view class='o-item' wx:if="{{detail && detail.goodsSn}}">
+                <view class='left'>序列号</view>
+                <view class='right series_no'>{{detail ? detail.goodsSn : ''}}</view>
+            </view>
+            <view class='o-item'>
+                <view class='left'>预约手机</view>
+                <view class='right'>{{detail ? detail.mobile : ''}}</view>
+            </view>
+            <view class='o-item'>
+                <view class='left'>预约时间</view>
+                <view class='right'>{{detail && detail.yy_time ? detail.yy_time : ''}}</view>
+            </view>
+            <view class='o-item'>
+                <view class='left'>安装时间</view>
+                <view class='right' wx:if="{{detail}}">{{detail && detail.fix_time ? detail.fix_time : '未安装'}}</view>
+            </view>
+            <view class='o-item address'>
+                <view class='left'>安装地址</view>
+                <view class='right'>{{detail ? detail.address : ''}}</view>
+            </view>
+            <view class='o-item' wx:if="{{detail && detail.agentMobile}}">
+                <view class='left'>商家手机</view>
+                <view class='right' bindtap='callagent' data-mobile="{{detail.agentMobile}}">{{detail ? detail.agentMobile : ''}}</view>
+            </view>
+            <view class="o-item {{detail && detail.dxb ? 'dxb' : ''}}">
+                <view class='left'>导向板</view>
+                <view class='right'>
+                    <image wx:if="{{detail && detail.dxb}}" bindtap='preview' data-cate="dxb" class='dxbimg' src="{{detail && detail.dxb ? detail.dxb : '/static/images/default@2x.png'}}" mode="aspectFit"></image>
+                    <view wx:if="{{detail && !detail.dxb}}">用户未上传</view>
+                </view>
+            </view>
+
+
+            <view class='o-btn' wx:if="{{detail && detail.canBeCancelled}}">
+                <button class="o-submit" bindtap="cancel" hover-class="sb-hover">取消订单</button>
+            </view>
+
+            <view class='o-btn' wx:if="{{detail && detail.orderStatus == 'FIXED' && !detail.attitudeScore}}">
+                <button class="o-submit" bindtap="comment" data-type="addcart" hover-class="sb-hover">订单评价</button>
+                <view class="refund" bindtap="refund" wx:if="{{detail.canBeRejected}}">我要退货</view>
+            </view>
+
+            <view wx:if="{{detail && detail.attitudeScore}}" class="comment-detail">
+                <view class='c-title'>服务评价</view>
+                <view class='o-item comment mt'>
+                    <view class='left'>产品评价</view>
+                    <view class='right'>
+                        <block wx:for="{{stars}}" class="bb" wx:key="{{index}}">
+                            <image class="star-image" style="left: {{item*48 + 20}}rpx" src="{{detail.productScore > item ? (detail.productScore-item == 0.5 ? halfSrc : selectedSrc) : normalSrc}}">
+                            </image>
+                        </block>
+                    </view>
+                </view>
+                <view class='o-item comment'>
+                    <view class='left'>安装响应</view>
+                    <view class='right'>
+                        <block wx:for="{{stars}}" class="bb" wx:key="{{index}}">
+                            <image class="star-image" style="left: {{item*48 + 20}}rpx" src="{{detail.promptScore > item ? (detail.promptScore-item == 0.5 ? halfSrc : selectedSrc) : normalSrc}}">
+                            </image>
+                        </block>
+                    </view>
+                </view>
+                <view class='o-item comment'>
+                    <view class='left'>服务态度</view>
+                    <view class='right'>
+                        <block wx:for="{{stars}}" class="bb" wx:key="{{index}}">
+                            <image class="star-image" style="left: {{item*48 + 20}}rpx" src="{{detail.attitudeScore > item ? (detail.attitudeScore-item == 0.5 ? halfSrc : selectedSrc) : normalSrc}}">
+                            </image>
+                        </block>
+                    </view>
+                </view>
+                <view class="o-item comment {{detail && detail.commentImages ? 'c-img-outter' : ''}}">
+                    <view class='left'>实拍图片</view>
+                    <view class='right' wx:if="{{detail && detail.commentImages}}">
+                        <image class="c-img" bindtap='preview' data-cate="comment" data-idx="{{index}}" wx:for="{{detail.imgs}}" src="{{item ? item : '/static/images/default@2x.png'}}" wx:key="{{index}}"></image>
+                    </view>
+                </view>
+                <view class='o-item comment cdetail'>
+                    <view class='left'>评价详情</view>
+                    <view class='right'>{{detail.commentContent}}</view>
+                </view>
+                <view class='o-btn' wx:if="{{detail && detail.canBeRejected}}">
+                    <button class="o-submit rt" bindtap="refund" hover-class="sb-hover">我要退货</button>
+                </view>
+            </view>
+
+
+            <view wx:if="{{detail && (detail.orderStatus == 'REJECTING' || (detail.orderStatus == 'CLOSED' && detail.rejectReason))}}" class="comment-detail">
+                <view class='c-title'>退货进度</view>
+                <view class='o-item comment cdetail'>
+                    <view class='left'>退货状态</view>
+                    <view class='right'>{{detail.rejectStatusName}}</view>
+                </view>
+                <view class='o-item comment cdetail' style='margin-top:12rpx;'>
+                    <view class='left'>申请时间</view>
+                    <view class='right'>{{detail.rejectApplyDate}}</view>
+                </view>
+                <view class='o-item comment cdetail' wx:if="{{detail.rejectFinishDate}}" style='margin-top:12rpx;'>
+                    <view class='left'>处理时间</view>
+                    <view class='right'>{{detail.rejectFinishDate}}</view>
+                </view>
+                <view class='o-item comment cdetail' style='margin-top:12rpx;'>
+                    <view class='left'>退货说明</view>
+                    <view class='right'>{{detail.rejectReason}}</view>
+                </view>
+                <view class="o-item comment {{detail && detail.rejectImgs ? 'c-img-outter' : ''}}">
+                    <view class='left'>退货图片</view>
+                    <view class='right' wx:if="{{detail && detail.rejectImgs}}">
+                        <image class="c-img" bindtap='preview' data-cate="refund" data-idx="{{index}}" wx:for="{{detail.rejectImgs}}" src="{{item ? item : '/static/images/default@2x.png'}}" wx:key="{{index}}"></image>
+                    </view>
+                </view>
+            </view>
+
+
+
+        </view>
+     </view>
+</scroll-view>
+
+
+<view class="mask" wx:if="{{showModalStatus}}" data-status="close" catchtap="switchPop"></view>
+<view animation="{{animationData}}" class="drawer_box" wx:if="{{showModalStatus}}"> 
+    <image lazy-load="true" src="/static/images/close@2x.png" mode="widthFix" class="close" data-status="close" catchtap="switchPop"></image>
+    <view class='cancel-title'>请输入您取消订单的理由</view>
+    <textarea class='c-text' value="{{content}}" bindinput="contentinput" placeholder="请输入您取消订单的理由" />
+    <view class='o-btn'>
+        <button class="o-submit" data-status="close" catchtap="cancelSubmit" hover-class="sb-hover" style="margin-top: 40rpx;">提交</button>
+    </view>
+</view>

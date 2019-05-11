@@ -1,0 +1,54 @@
+<view class='outter'>
+    <view class='onPullDownRefresh' wx:if="{{scrollTop == 0}}"></view>
+    <scroll-view class='pages' scroll-y="true" bindscrolltolower="lower" bindscroll="scroll">
+        <view class="banner">
+            <navigator url="../goods/item/index?gid=14">
+                <image lazy-load="true" src="https://shop.iccssi.com/images/ai_01.jpg" mode="widthFix"></image>
+            </navigator>
+            <navigator url="../goods/item/index?gid=3">
+                <image lazy-load="true" src="https://shop.iccssi.com/images/ai_02.jpg" mode="widthFix"></image>
+            </navigator>
+        </view>
+        <view class="banner">
+            <image lazy-load="true" src="https://shop.iccssi.com/images/ai_03.jpg" mode="widthFix"></image>
+        </view>
+        <view class="page__bd">
+            <view class="goods-list">
+                <view class="content">
+                    <block data-index='{{index}}' wx:for="{{goodslist}}" wx:key="{{index}}">
+                        <view class="item">
+                            <navigator url="../goods/item/index?gid={{item.id}}">
+                                <image lazy-load="true" src="{{item.img ? item.img : '/static/images/default@2x.png'}}" mode="widthFix"></image>
+                                <view class='btn-area'>
+                                <view class='title'>{{item.name}}</view>
+                                <view class='gobuy'>立即下单</view>
+                                </view>
+                            </navigator>
+                        </view>
+                        <view class="banner" wx:if="{{index==3}}">
+                            <image lazy-load="true" src="https://shop.iccssi.com/images/ai_04.jpg" mode="widthFix"></image>
+                        </view>
+                        <view class="banner" wx:if="{{index==3}}"></view>
+                        <view class="banner" wx:if="{{index== 7}}">
+                            <image lazy-load="true" src="https://shop.iccssi.com/images/ai_05.jpg" mode="widthFix"></image>
+                        </view>
+                        <view class="banner" wx:if="{{index== 7}}"></view>
+                    </block>
+                </view>
+                <view class="banner" wx:if="{{1==2}}">
+                    <image lazy-load="true" src="https://shop.iccssi.com/images/ai_05.jpg" style='margin-bottom: 2rpx;' mode="widthFix"></image>
+                </view>
+            </view>
+            <!-- 产品列表 -->
+        </view>
+        
+        <view class='nodata' wx:if="{{goodslist.length > 0 && !loading && pageNumber == pageCount && 1==2}}">我是有底线的</view>
+        <view class="load-more" wx:if="{{loading && pageNumber != 1}}">
+            <view class="la-fire la-dark" style="margin:0 auto;">
+                <view class='load-item'></view>
+                <view class='load-item'></view>
+                <view class='load-item'></view>
+            </view>
+        </view>
+    </scroll-view>
+</view>

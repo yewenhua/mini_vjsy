@@ -1,0 +1,46 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/goods/item/index",
+    "pages/goods/order/index",
+    "pages/orderlist/orderlist",
+    "pages/detail/detail",
+    "pages/star/star",
+    "pages/manual/manual",
+    "pages/refund/refund",
+    "pages/success/success"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "艾栖甄选",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "backgroundColor": "#f9f9f9",
+    "position": "bottom",
+    "color": "#8a8a8a",
+    "selectedColor": "#22A3FE",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/static/images/home_light.png",
+        "selectedIconPath": "/static/images/home_fill.png"
+      },
+      {
+        "pagePath": "pages/orderlist/orderlist",
+        "text": "我的订单",
+        "iconPath": "/static/images/people_list_light.png",
+        "selectedIconPath": "/static/images/people_list.png"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "sitemapLocation": "sitemap.json"
+}

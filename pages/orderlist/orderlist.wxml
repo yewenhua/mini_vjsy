@@ -1,0 +1,30 @@
+<scroll-view class='pages' scroll-y="true" bindscrolltolower="lower">
+    <view class='weui-cells weui-cells_after-title'>
+        <navigator  wx:for="{{lists}}" wx:key="{{index}}" url="../detail/detail?id={{item.id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+            <view class="weui-cell__bd order-item">
+                <view class="productImg">
+                    <image lazy-load="true" src="{{item.img}}"></image>
+                </view>
+                <view class="productInfo">
+                    <view class="productTitle">{{item.goodsName}}</view>
+                    <view class="productPrice">￥{{item.amount ? item.amount : ''}}元</view>
+                    <view class="productStatus {{item.orderStatus == 'CREATED' ? 'created' : item.orderStatus == 'ACCEPTED' ? 'accepted' : item.orderStatus == 'FIXED' ? 'fixed' : item.orderStatus == 'FINISHED' ? 'finished' : 'rejected'}}">{{item.orderStatusName ? item.orderStatusName : ''}}</view>
+                    <view class="productReserve">预约时间：{{item.time}}</view>
+                </view>
+            </view>
+            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        </navigator>
+    </view>
+    <view class='nodata' wx:if="{{lists.length == 0 && !loading}}">
+        <image lazy-load="true" src="{{'/static/images/nodata.png'}}" mode="widthFix"></image>
+        <view class='no-text'>亲，您还没有下过订单</view>
+    </view>
+    <view class='nodata' wx:if="{{lists.length > 0 && !loading}}">{{pageNumber == pageCount ? '我是有底线的' : '上拉加载更多'}}</view>
+    <view class="load-more" wx:if="{{loading && pageNumber != 1}}">
+        <view class="la-fire la-dark" style="margin:0 auto;">
+            <view class='load-item'></view>
+            <view class='load-item'></view>
+            <view class='load-item'></view>
+        </view>
+    </view>
+</scroll-view>

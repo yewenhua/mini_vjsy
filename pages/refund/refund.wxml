@@ -1,0 +1,20 @@
+<view class='star-page'>
+    <form bindsubmit="refund" report-submit="true">
+        <view class='star-title'>退货说明</view>
+        <view class='o-content'>
+            <textarea class='o-text' value="{{content}}" bindinput="contentblur" placeholder="请输入退货说明" />
+            <view class='up-img' bindtap='select_pic'>
+                <view class="up-img-item {{upimgs.length > 0 ? 'more' : ''}}" wx:for="{{upimgs}}" wx:key="{{index}}" wx:if="{{upimgs.length > 0}}">
+                <image src="{{item.original}}"></image>
+                </view>
+                <view class='up-img-item' wx:if="{{upimgs.length == 0}}">
+                <image src='/static/images/pz.png'></image>
+                </view>
+            </view>
+        </view>
+
+        <view class='o-btn'>
+            <button class="o-submit" hover-class="sb-hover" form-type="submit">提交</button>
+        </view>
+    </form>
+</view>

@@ -1,0 +1,31 @@
+@import './static/css/weui.wxss';
+page,.pages{
+    font-size: 28rpx;
+    background-color: #F7F7F7;
+}
+view{
+    box-sizing: border-box;
+}
+.clearfix {
+    position: relative;
+}
+.clearfix:after {
+    content: '';
+    clear: both;
+    display: block;
+    position: relative;
+}
+.radius-5{
+    border-radius: 10rpx;
+}
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
+}
+.page__bd{
+    padding: 30rpx;
+}
+/*全局样式*/

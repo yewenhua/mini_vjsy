@@ -1,0 +1,125 @@
+<view class="pages">
+    <view class="page__bd">
+        <form bindsubmit="formsubmit" report-submit="true">
+            <view class="cells">
+                <view class="cell">
+                    <view class="hd">
+                        <view class="weui-label">用户姓名</view>
+                    </view>
+                    <view class="bd">
+                        <input class="input" type='text' placeholder-class="placeholder" name="username" placeholder="请输入您的姓名"/>
+                    </view>
+                </view>
+                <view class="cell">
+                    <view class="hd">
+                        <view class="weui-label">手机号码</view>
+                    </view>
+                    <view class="bd">
+                        <input class="input" maxlength="11" type='number' placeholder-class="placeholder" name="mobile" placeholder="请输入您的手机号码"/>
+                    </view>
+                </view>
+                
+                <view class="cell">
+                    <view class="hd">
+                        <view class="weui-label">所选颜色</view>
+                    </view>
+                    <view class="bd">
+                        <picker bindchange="bindColorChange" range-key='name' value="{{index}}" range="{{colorArray}}" mode = "selector">  
+                            <view class="picker">{{colorArray[index].name}}</view>  
+                        </picker>
+                    </view>
+                </view>
+                <view class="cell">
+                    <view class="dxb" bindtap='select_pic'>拍照上传您的导向板</view>
+                </view>
+                <view class="cell">
+                    <view class="hd">
+                        <view class="weui-label">所在地区</view>
+                    </view>
+                    <view class="bd">
+                        <view bindtap='open' class="input" style="color : {{province ? '#333' : '#666'}}">{{province ? (province + '/' + city + '/' + county) : '选择所在地区'}}</view>
+                    </view>
+                </view>
+
+
+                <view class="cell">
+                    <view class="hd">
+                        <view class="weui-label">详细地址</view>
+                    </view>
+                    <view class="bd">
+                        <input class="input" type='text' placeholder-class="placeholder" name="address" placeholder="请输入详细地址"/>
+                    </view>
+                </view>
+                <view class="cell">
+                    <view class="hd diy">
+                        <view class="weui-label"><view class="mutil">预约上门</view><view class="mutil">安装时间</view></view>
+                    </view>
+                    <view class="bd">
+                        <picker mode="multiSelector" value="{{dateTime}}" start="2018-01-01" end="2030-12-31" bindchange="bindDateChange" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">  
+                            <view class="picker">{{dateTimeArray[0][dateTime[0]]}}-{{dateTimeArray[1][dateTime[1]]}}-{{dateTimeArray[2][dateTime[2]]}} {{dateTimeArray[3][dateTime[3]]}}:{{dateTimeArray[4][dateTime[4]]}}</view>  
+                        </picker>
+                    </view>
+                </view>
+                <checkbox-group class="radio-group" bindchange="checkboxChange" wx:if="{{1==2}}">
+                  <label>
+                    <checkbox checked="{{checked}}" class="protocal"/>
+                    <text class='p-text'>我已阅读并同意</text>
+                  </label>
+                  <text class='pro-text' bindtap='protocal'>《产品试用协议书》</text>
+                </checkbox-group>
+            </view>
+            <view class="details">
+                <button class="btn" hover-class="sb-hover" form-type="submit">确认订单信息</button>
+            </view>
+        </form>
+    </view>
+</view>
+
+<view animation="{{animationData}}" class="drawer_box" wx:if="{{showModalStatus}}"> 
+    <!--drawer content-->
+    
+    <image lazy-load="true" src="/static/images/close@2x.png" mode="widthFix" class="close" data-status="close" catchtap="switchPop"></image>
+    <view class='pro-title'>产品试用协议书</view>
+    <scroll-view class='result' scroll-y="true">
+        <view class='content'>本协议(以下简称“本协议“)是浙江威欧希科技股份有限公司 (以下简称“VOC”)与产品用户(以下简称“用户”或“您”)就试用服务等相关事项所订立的有效合约。您通过网络页面点击确认或以其他方式选择接受本协议,即表示您与VOC已达成协议并同意接受本协议的全部约定内容。</view>
+        <view class='content'>您自愿试用VOC产品,VOC负责免费安装。双方本着利泽信义、互惠合作的原则,签订本协议。</view>
+        <view class='title'>一、VOC的权利和义务</view>
+        <view class='content'>1、VOC在指定期限内免费提供一台您选定的试用机型试用,VOC保证所提供试用产品为合格产品。</view>
+        <view class='content'>2、VOC在试用期间不得无故向您取回试用产品,除非VOC证明您有损害VOC权益的行为发生。</view>
+        <view class='content'>3、试用期间,VOC负责对试用产品修理,如是您人为因素损坏,维修费用由您承担。</view>
+        <view class='content'>4、在用户试用产品期间,VOC拥有该产品的合格所有权。</view>
+        <view class='title'>二、用户权利和义务</view>
+        <view class='content'>1、您承诺保证试用产品依据产品说明使用。</view>
+        <view class='content'>2、在试用期结束之后，您对产品满意，则需向VOC一次性付清设备价款。您如若对产品不满意，则可以选择产品退货。</view>
+        <view class='content'>3、试用VOC提供产品,您可以试用前检验试用产品是否为合格产品。</view>
+        <view class='content'>4、试用期内您可就试用产品的任何问题向VOC提出咨询,VOC将解答。</view>
+        <view class='content'>5、试用期间,您承担妥善保管、合理使用产品职责,保证产品外表无划痕、标签完整无破损、零配件和说明书完整等责任和义务。末经VOC书面同意,不得将试用产品转移、拆卸、转借、出租或赠与他人,更不可用做其它商业用途;</view>
+        <view class='content'>6、在以下情况下认为您自动购买该设备:</view>
+        <view class='sub-content'>（1）将设备转移、拆卸、转借、出租或赠与任何第三方使用,用做其它商业用途。</view>
+        <view class='sub-content'>（2）人为损坏设备外观</view>
+        <view class='sub-content'>（3）撕毁设备相关资料和保修服务卡。</view>
+        <view class='sub-content'>（4）超过试用期未将设备归还给VOC。</view>
+        <view class='title'>三、纠纷解决方式</view>
+        <view class='content'>凡因本协议引起的或与本协议有关的任何争议,由双方本着友好合作原则协商解决。如果友好协商后还不能解决,争端应提交仲裁。仲裁应由双方商定的仲裁委员会根据仲裁法则和程序进行仲裁;仲裁裁决应为最终裁决,对双方均具有约束力。</view>
+    </scroll-view>
+</view>
+
+<view wx:if="{{condition}}" class="citypicker">
+  <view class='mask' catchtap='open'></view>
+  <picker-view indicator-style="height: 80rpx;" value="{{value}}" bindchange="areaChange" class="citybody">
+    <view class="cityheader">
+      <view catchtap="open" class="city-cancel">取消</view>
+      <view catchtap="open" class="city-true">确定</view>
+    </view>
+    <picker-view-column>
+      <view wx:for="{{provinces}}" wx:key="item" style="line-height: 80rpx;padding-left:20rpx;">{{item}}</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{citys}}" wx:key="item" style="line-height: 80rpx;padding-left:20rpx;">{{item}}</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{countys}}" wx:key="item" style="line-height: 80rpx;padding-left:20rpx;">{{item}}</view>
+    </picker-view-column>
+  </picker-view>
+</view>
+
